@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://btb803g3ei3ka"]
+
+[ext_resource type="Script" uid="uid://d2f6sw1qps6et" path="res://Assets/Scripts/score_calculator.gd" id="1_hq7m3"]
+[ext_resource type="Script" uid="uid://bt6i6sbqewwbs" path="res://Assets/Scripts/letter_checker/punctuation_check.gd" id="2_0akq7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8r2kf"]
+font_size = 32
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23095694, 0.29722643, 0.32460493, 1)
+
+[node name="Tester Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleLabel" type="Label" parent="Tester Container"]
+layout_mode = 2
+text = "Letter Tester!!!"
+label_settings = SubResource("LabelSettings_8r2kf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LetterText" type="TextEdit" parent="Tester Container"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+placeholder_text = "Write Your Letter Here!"
+wrap_mode = 1
+
+[node name="Score Container" type="HBoxContainer" parent="Tester Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="TotalScoreLabel" type="Label" parent="Tester Container/Score Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Total Score: xx"
+
+[node name="TotalScoreLabel2" type="Label" parent="Tester Container/Score Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "The VIllager will have X opinion of you."
+
+[node name="Checking Systems" type="Node" parent="."]
+
+[node name="Score Calculator" type="Node" parent="Checking Systems"]
+script = ExtResource("1_hq7m3")
+
+[node name="Punctuation Check" type="Node" parent="Checking Systems/Score Calculator"]
+script = ExtResource("2_0akq7")
+active = true
+success_score = 10
+fail_penaulty = 20
+
+[connection signal="text_changed" from="Tester Container/LetterText" to="Checking Systems/Score Calculator" method="_on_letter_text_text_changed"]
