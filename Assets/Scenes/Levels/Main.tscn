@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://btb803g3ei3ka"]
+[gd_scene load_steps=6 format=3 uid="uid://btb803g3ei3ka"]
 
 [ext_resource type="Script" uid="uid://d2f6sw1qps6et" path="res://Assets/Scripts/score_calculator.gd" id="1_hq7m3"]
 [ext_resource type="Script" uid="uid://bt6i6sbqewwbs" path="res://Assets/Scripts/letter_checker/punctuation_check.gd" id="2_0akq7"]
 [ext_resource type="Script" uid="uid://b27x37s5nxfpt" path="res://Assets/Scripts/letter_checker/sequential_check.gd" id="3_6itgg"]
+[ext_resource type="Script" uid="uid://b4vcrtniq6kmb" path="res://Assets/Scripts/letter_checker/space_ratio_check.gd" id="4_vnup3"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8r2kf"]
 font_size = 32
@@ -79,6 +80,14 @@ fail_penaulty = 20
 script = ExtResource("3_6itgg")
 squential_num = 5
 active = true
+fail_penaulty = 50
+
+[node name="Space Ratio Check" type="Node" parent="Checking Systems/Score Calculator"]
+script = ExtResource("4_vnup3")
+failure_percent = 50.0
+success_percent = 30.0
+active = true
+success_score = 50
 fail_penaulty = 50
 
 [connection signal="text_changed" from="Tester Container/LetterText" to="Checking Systems/Score Calculator" method="_on_letter_text_text_changed"]

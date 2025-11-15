@@ -1,5 +1,5 @@
 extends LetterChecker
-class_name SequentialCheck
+class_name SequentialChecker
 
 @export var squential_num: int # Number of times a letter has to repeat for it to fail
 
