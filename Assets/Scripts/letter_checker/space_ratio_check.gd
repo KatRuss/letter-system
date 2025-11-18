@@ -17,7 +17,7 @@ func calculate_score(letter_text: String) -> int:
 	if non_spaces == 0:
 		return -fail_penaulty
 		
-	var ratio = (spaces*100)/non_spaces
+	var ratio = (spaces*100.0)/non_spaces
 	print(ratio)
 	if ratio >= failure_percent:
 		return -fail_penaulty
